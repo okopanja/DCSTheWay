@@ -102,7 +102,7 @@
                       <txtFileVersion>${project.version}.0</txtFileVersion>
                       <fileDescription>Tool for loading waypoints into DCS World</fileDescription>
                       <copyright>?</copyright>
-                      <productVersion>${project.version}</productVersion>
+                      <productVersion>${project.version}.0</productVersion>
                       <txtProductVersion>${project.version}.0</txtProductVersion>
                       <productName>DCS The Way</productName>
                       <internalName>DCS The Way</internalName>
