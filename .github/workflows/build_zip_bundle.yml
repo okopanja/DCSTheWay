@@ -17,19 +17,16 @@ jobs:
         id: set_version
         with:
           script: |
-            if(!context.ref.startsWith("refs/tags")) 
-              tag = context.ref.substring(10)
-            else
-              tag = '0.0.0'
+            const tag = context.ref.substring(10)
             const no_v = tag.replace('v', '')
             const dash_index = no_v.lastIndexOf('-')
             const no_dash = (dash_index > -1) ?  no_v.substring(0, dash_index) : no_v
             var file_version = no_dash
             components = no_dash.split('.')
             console.log(no_dash)            
-            for (let i = 0; i < (4 - components.lenght); i++)
-              console.log(i)            
+            for (let i = 0; i < (4 - components.lenght); i++) {
               file_version = file_version + '.0'
+            }
             console.log(file_version)            
             core.setOutput('tag', tag)
             core.setOutput('tag-no-v', no_v)
@@ -42,6 +39,7 @@ jobs:
         run: mvn --batch-mode package -Dfile_version="${{ steps.set_version.outputs.file-version }}" -Dtag_version="${{ steps.set_version.outputs.tag }}" -Drelease_url="${{ github.server_url }}/${{github.repository}}/releases/tag/${{ github.ref_name }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: startsWith(github.ref, 'refs/tags/')          
       - name: Create release and upload asset
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
