@@ -100,7 +100,7 @@
                     <versionInfo>
                       <fileVersion>${file_version}</fileVersion>
                       <txtFileVersion>${tag_version}</txtFileVersion>
-                      <fileDescription>Tool for loading waypoints into DCS World</fileDescription>
+                      <fileDescription>Tool for loading waypoints into DCS World\nRelease URL: ${release_url}\nReleased by: ${released_by}</fileDescription>
                       <copyright>?</copyright>
                       <productVersion>${file_version}</productVersion>
                       <txtProductVersion>${tag_version}</txtProductVersion>
