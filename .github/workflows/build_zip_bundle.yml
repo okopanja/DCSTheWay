@@ -32,9 +32,12 @@ jobs:
             core.setOutput('tag-no-v', no_v)
             core.setOutput('tag-no-dash', no_dash)
             core.setOutput('file-version', file_version)
+        if: startsWith(github.ref, 'refs/tags/')            
       - name: If building the tag set Maven Version based on tag
         run: mvn --batch-mode versions:set -DnewVersion="${{ steps.set_version.outputs.tag-no-dash }}"
         if: startsWith(github.ref, 'refs/tags/')
+      - name: Compile and test
+        run: mvn --batch-mode compile test
       - name: Build Maven Package
         run: mvn --batch-mode package -Dfile_version="${{ steps.set_version.outputs.file-version }}" -Dtag_version="${{ steps.set_version.outputs.tag }}" -Drelease_url="${{ github.server_url }}/${{github.repository}}/releases/tag/${{ github.ref_name }}"
         env:
