@@ -100,12 +100,12 @@
                     <versionInfo>
                       <fileVersion>${file_version}</fileVersion>
                       <txtFileVersion>${tag_version}</txtFileVersion>
-                      <fileDescription>Tool for loading waypoints into DCS World</fileDescription>
+                      <fileDescription>${release_url}</fileDescription>
                       <copyright>GPLv3</copyright>
                       <productVersion>${file_version}</productVersion>
                       <txtProductVersion>${tag_version}</txtProductVersion>
                       <productName>DCS The Way</productName>
-                      <internalName>${release_url}</internalName>
+                      <internalName>DCS The Way</internalName>
                       <originalFilename>TheWay.exe</originalFilename>
                     </versionInfo>
                   </configuration>
