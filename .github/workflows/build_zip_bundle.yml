@@ -23,8 +23,9 @@ jobs:
             const no_dash = (dash_index > -1) ?  no_v.substring(0, dash_index) : no_v
             var file_version = no_dash
             components = no_dash.split('.')
-            console.log(no_dash)            
-            for (let i = 0; i < (4 - components.lenght); i++) {
+            console.log(no_dash)
+            consol
+            for (let i = 0; i < (4 - components.length); i++) {
               file_version = file_version + '.0'
             }
             console.log(file_version)            
