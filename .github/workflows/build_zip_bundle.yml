@@ -12,17 +12,26 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - uses: actions/github-script@v6
-        id: set-file-version
+      - name: Set Versions
+        uses: actions/github-script@v6
+        id: set_version
         with:
           script: |
-            version_with_no_alphabetic = github.ref_name.replace(/\D/g,'')            
-            return version_with_no_alphabetic
-          result-encoding: string
-      - name: Get file version
-        run: echo "${{steps.set-file-version.outputs.result}}"
+            const tag = context.ref.substring(10)
+            const no_v = tag.replace('v', '')
+            const dash_index = no_v.lastIndexOf('-')
+            const no_dash = (dash_index > -1) ?  no_v.substring(0, dash_index) : no_v
+            var file_version = no_dash
+            components = no_dash.split('.')
+            for (let i = 0; i < (4 - components.lenght); i++)
+              file_version = file_version + '.0'
+            core.setOutput('tag', tag)
+            core.setOutput('tag-no-v', no_v)
+            core.setOutput('tag-no-dash', no_dash)
+            core.setOutput('file-version', file_version)
+        if: startsWith(github.ref, 'refs/tags/')
       - name: If building the tag set Maven Version based on tag
-        run: mvn --batch-mode versions:set -DnewVersion=${{ github.ref_name }}
+        run: mvn --batch-mode versions:set -DnewVersion=${{ steps.set_version.outputs.file_version }}
         if: startsWith(github.ref, 'refs/tags/')
       - name: Build Maven Package
         run: mvn --batch-mode package
