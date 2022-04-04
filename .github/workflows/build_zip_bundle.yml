@@ -23,8 +23,11 @@ jobs:
             const no_dash = (dash_index > -1) ?  no_v.substring(0, dash_index) : no_v
             var file_version = no_dash
             components = no_dash.split('.')
+            console.log(no_dash)            
             for (let i = 0; i < (4 - components.lenght); i++)
+              console.log(i)            
               file_version = file_version + '.0'
+            console.log(file_version)            
             core.setOutput('tag', tag)
             core.setOutput('tag-no-v', no_v)
             core.setOutput('tag-no-dash', no_dash)
