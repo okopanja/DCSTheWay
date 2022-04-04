@@ -98,7 +98,7 @@
                       </opts>
                     </jre>
                     <versionInfo>
-                      <fileVersion>${project.version}</fileVersion>
+                      <fileVersion>${file_version}</fileVersion>
                       <txtFileVersion>${project.version}</txtFileVersion>
                       <fileDescription>Tool for loading waypoints into DCS World</fileDescription>
                       <copyright>?</copyright>
