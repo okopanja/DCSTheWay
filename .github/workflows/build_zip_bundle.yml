@@ -12,12 +12,15 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Publish package
+      - name: If building the tag set Maven Version based on tag
+        run: mvn --batch-mode versions:set -DnewVersion=${{ github.ref_name }}
+        if: startsWith(github.ref, 'refs/tags/')
+      - name: Build Maven Package
         run: mvn --batch-mode package
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Release
+      - name: Create release and upload asset
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: dcstheway-1.0.0.0.zip
+          files: dcstheway-${{ github.ref_name }}.zip
