@@ -1,4 +1,4 @@
-name: Build TheWay and publish it to release assets
+name: TheWay -> comile, test, package, create realase(on tag)
 on: push
 jobs:
   publish:
