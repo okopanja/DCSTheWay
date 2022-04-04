@@ -34,7 +34,7 @@ jobs:
             core.setOutput('file-version', file_version)
         if: startsWith(github.ref, 'refs/tags/')
       - name: If building the tag set Maven Version based on tag
-        run: mvn --batch-mode versions:set -DnewVersion="${{ steps.set_version.outputs.file-version }}"
+        run: mvn --batch-mode versions:set -DnewVersion="${{ steps.set_version.outputs.tag-no-dash }}" -Dfile_version="${{ steps.set_version.outputs.file-version }}"
         if: startsWith(github.ref, 'refs/tags/')
       - name: Build Maven Package
         run: mvn --batch-mode package
@@ -44,5 +44,5 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: target/dcstheway-${{ github.ref_name }}.zip
+          files: target/dcstheway-${{ steps.set_version.outputs.tag-no-dash }}.zip
           repo-token: ${{ secrets.GITHUB_TOKEN }}          
