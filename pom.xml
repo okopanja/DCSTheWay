@@ -98,12 +98,12 @@
                       </opts>
                     </jre>
                     <versionInfo>
-                      <fileVersion>${project.version}.0</fileVersion>
-                      <txtFileVersion>${project.version}.0</txtFileVersion>
+                      <fileVersion>${project.version}</fileVersion>
+                      <txtFileVersion>${project.version}</txtFileVersion>
                       <fileDescription>Tool for loading waypoints into DCS World</fileDescription>
                       <copyright>?</copyright>
-                      <productVersion>${project.version}.0</productVersion>
-                      <txtProductVersion>${project.version}.0</txtProductVersion>
+                      <productVersion>${project.version}</productVersion>
+                      <txtProductVersion>${project.version}</txtProductVersion>
                       <productName>DCS The Way</productName>
                       <internalName>DCS The Way</internalName>
                       <originalFilename>TheWay.exe</originalFilename>
