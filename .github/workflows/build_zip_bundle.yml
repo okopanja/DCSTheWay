@@ -24,7 +24,6 @@ jobs:
             var file_version = no_dash
             components = no_dash.split('.')
             console.log(no_dash)
-            consol
             for (let i = 0; i < (4 - components.length); i++) {
               file_version = file_version + '.0'
             }
